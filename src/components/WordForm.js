@@ -1,12 +1,20 @@
+import { useState } from "react"
+
 function WordForm(props) {
-  // render
-  const renderInputs = () => {
-    return null // implement changes
+
+  const updateValue = (event) => {
+    props.updateMadLibWord(event.target.id, event.target.value)
   }
+
+  const renderInputs = props.words.map((elem, index)  => {
+    return (
+        <input type="text" key={`${elem['key']}`} id={index} placeholder={elem['label']} onChange={(event) => updateValue(event)} />
+    )
+  })
   
   return (
     <div id="div-words">
-      { renderInputs() }
+      { renderInputs }
     </div>
   )
 }
